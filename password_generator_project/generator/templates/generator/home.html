@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class="mt-4">Password generator</h1>
+        <form class="my-4 text-left mx-auto" action="{% url 'password' %}" style="width: 250px">
+            <div class="form-group">
+                <label for="pass-length">Length of the password</label>
+                <select name="length" class="form-control" id="pass-length">
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10" selected="selected">10</option>
+                </select>
+            </div>
+            <div class="form-group form-check">
+                <input name="uppercase" type="checkbox" class="form-check-input" id="uppercase-check">
+                <label class="form-check-label" for="uppercase-check">Uppercase</label>
+            </div>
+            <div class="form-group form-check">
+                <input name="numbers" type="checkbox" class="form-check-input" id="numbers-check">
+                <label class="form-check-label" for="numbers-check">Numbers</label>
+            </div>
+            <div class="form-group form-check">
+                <input name="special-characters" type="checkbox" class="form-check-input" id="special-check">
+                <label class="form-check-label" for="special-check">Special characters</label>
+            </div>
+            <input type="submit" value="Generate password" class="btn btn-primary btn-block my-2">
+        </form>
+        <br>
+        <a href="{% url 'about'%}" class="btn btn-secondary">About page</a>
+    </div>
+</body>
+</html>
