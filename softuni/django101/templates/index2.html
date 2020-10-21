@@ -1,0 +1,18 @@
+{% extends 'shared/base.html' %}
+
+{%  block site_title %}
+    title of index 2
+{% endblock %}
+
+{% block site_content %}
+<h1>Hi there!</h1>
+    {{ users }}
+    {{ object_list }}
+<ul>
+    {% for user in object_list %}
+        <li class="{% cycle "even" "odd" %}">
+            {{ user.username }}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

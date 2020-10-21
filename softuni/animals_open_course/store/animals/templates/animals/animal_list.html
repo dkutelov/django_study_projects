@@ -1,0 +1,21 @@
+{% extends 'animals/base.html' %}
+
+{% block site_content %}
+    <div class="container">
+        <div class="row">
+            {% for animal in animals %}
+            <div class="col-lg-4">
+                <div class="card" style="width: 18rem;">
+                  <img class="card-img-top" src="{{ animal.image_url }}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ animal.name }}</h5>
+                    <p class="card-text">{{ animal.breed }}</p>
+                    <a href="{% url 'animals:detail' animal.id %}" class="btn btn-primary">See details</a>
+                      <a href="{% url 'animals:delete' animal.id %}" class="btn btn-danger">Delete</a>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

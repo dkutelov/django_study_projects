@@ -1,0 +1,16 @@
+{% extends 'shared/base.html' %}
+
+{% block site_content %}
+        
+<h1>Enter your new data</h1>
+<div class="form">
+    <form method="POST">
+        {% if error %}
+             <p style="color:red;">Error: {{ error }}</p>
+        {%  endif %}
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Edit">
+    </form>
+</div>
+{% endblock %}
