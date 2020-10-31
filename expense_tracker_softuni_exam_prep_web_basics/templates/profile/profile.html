@@ -11,11 +11,11 @@
         <p>In your profile you can edit your profile data</p>
         <div class="expense-detail">
             <div>
-                <p>Budget Left: {{ balance }}$</p>
+                <p>Budget Left: {{ profile.balance }}$</p>
             </div>
             <div class="right">
-                <button class="edit"><a href="/profile/edit">Edit Profile</a></button>
-                <button class="delete"><a href="/profile/delete">Delete Profile</a></button>
+                <button class="edit"><a href="{% url 'edit_profile' %}">Edit Profile</a></button>
+                <button class="delete"><a href="{% url 'delete_profile' %}">Delete Profile</a></button>
             </div>
         </div>
     </div>

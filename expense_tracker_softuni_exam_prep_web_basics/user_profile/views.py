@@ -12,9 +12,9 @@ def get_profile_balance(current_profile):
 
 def profile(request):
     current_profile = Profile.objects.all()[0]
+    current_profile.balance = get_profile_balance(current_profile)
     context = {
         'profile': current_profile,
-        'balance': get_profile_balance(current_profile)
     }
     return render(request, 'profile/profile.html', context)
 
@@ -32,8 +32,7 @@ def edit_profile(request):
         form = ProfileForm(request.POST, instance=current_profile)
 
         if not form.is_valid():
-            context.errors = form.errors
-            return render(request, 'profile/profile-edit.html', context)
+            return render(request, 'profile/profile-edit.html', {'form': form})
 
         form.save()
         return redirect('profile')

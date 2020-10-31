@@ -5,11 +5,8 @@
 <h1>Create Expense</h1>
 <div class="form">
     <form method="POST" action="{% url 'create_expense' %}">
-        {% if error %}
-             <p style="color:red;">Error: {{ error }}</p>
-        {%  endif %}
         {% csrf_token %}
-        {{ form }}
+        {% include 'partials/expense-form-fields.html' %}
         <input type="submit" value="Create">
     </form>
 </div>

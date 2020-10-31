@@ -4,17 +4,6 @@ from expense.models import Expense
 
 
 class ExpenseForm(forms.ModelForm):
-    # title = forms.CharField(label='Title', max_length=50)
-    # image_url = forms.URLField(label='Link to Image', max_length=200)
-    # description = forms.CharField(
-    #     label='Description',
-    #     widget=forms.Textarea
-    # )
-    # price = forms.FloatField(
-    #     label='Price',
-    #     min_value=0
-    # )
-
     class Meta:
         model = Expense
         fields = ['title', 'description', 'image_url', 'price']
@@ -27,3 +16,18 @@ class ExpenseForm(forms.ModelForm):
         widgets = {
             'description': forms.Textarea()
         }
+
+
+class DisabledFormMixin():
+    def __init__(self, *args, **kwargs):
+        for (_, field) in self.fields.items():
+            field.widget.attrs['disabled'] = True
+            field.widget.attrs['readonly'] = True
+
+
+class DeleteExpenseForm(ExpenseForm, DisabledFormMixin):
+    def __init__(self, *args, **kwargs):
+        ExpenseForm.__init__(self, *args, **kwargs)
+        DisabledFormMixin.__init__(self)
+
+

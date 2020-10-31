@@ -5,11 +5,8 @@
 <h1>Edit Expense</h1>
 <div class="form">
     <form method="POST" action="{% url 'edit_expense' expense_id %}">
-        {% if error %}
-             <p style="color:red;">Error: {{ error }}</p>
-        {%  endif %}
         {% csrf_token %}
-        {{ form }}
+        {% include 'partials/expense-form-fields.html' %}
         <input type="submit" value="Edit">
     </form>
 </div>
