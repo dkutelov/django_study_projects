@@ -1,0 +1,14 @@
+{% extends 'shared/base.html' %}
+
+{% block site_content %}
+<h1>Delete Recipe</h1>
+<div class="items-container">
+    <div class="item">
+        <form method="POST" action="{% url 'delete recipe' recipe_id %}">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="button delete" value="Delete">
+        </form>
+    </div>
+</div>
+{% endblock %}

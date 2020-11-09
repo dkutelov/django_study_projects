@@ -3,7 +3,7 @@ from .models import Question
 
 
 # Serializers define the API representation
-class QuestionSerializer(serializers.HyperlinkedModelSerializer):
+class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ['author', 'question']
+        fields = ('id', 'author', 'question')

@@ -1,0 +1,14 @@
+{% extends 'shared/base.html' %}
+
+{% block site_content %}
+<h1>Edit Recipe</h1>
+<div class="items-container">
+    <div class="item">
+        <form method="POST" action="{% url 'edit recipe' recipe_id %}">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="button edit" value="Edit">
+        </form>
+    </div>
+</div>
+{% endblock %}
