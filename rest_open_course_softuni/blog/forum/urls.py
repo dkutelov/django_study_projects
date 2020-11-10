@@ -13,5 +13,8 @@ urlpatterns = [
     # path('', include(router.urls)),
     path('questions/', views.QuestionList.as_view(), name="quesitons"),
     path('questions/<int:question_id>/', views.QuestionDetails.as_view(), name="question-details"),
+    path('questions/<int:question_id>/answers/<int:answer_id>/', views.AnswerDetails.as_view(), name="qanswer-details"),
+    path('users/questions/', views.UserList.as_view(), name='question-details')
+
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

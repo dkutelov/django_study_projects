@@ -4,8 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
 
-from .models import Question
-from .serializers import QuestionSerializer
+from .models import Question, Answer, Profile
+from .serializers import QuestionSerializer, AnswerSerializer, ProfileSerializer
 
 
 # ViewSets define the view behavior
@@ -57,3 +57,26 @@ class QuestionDetails(APIView):
         question = self.get_object(question_id)
         question.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class AnswerDetails(APIView):
+    @staticmethod
+    def get_object(pk):
+        try:
+            question = Answer.objects.get(pk=pk)
+            return question
+        except Answer.DoesNotExist:
+            raise Http404
+
+    def get(self, request, question_id, answer_id):
+        answer = self.get_object(answer_id)
+        serializer = AnswerSerializer(answer)
+        return Response(serializer.data)
+
+
+class UserList(APIView):
+
+    def get(self, request):
+        profiles = Profile.objects.all()
+        serializer = ProfileSerializer(profiles, many=True)
+        return Response(serializer.data)
