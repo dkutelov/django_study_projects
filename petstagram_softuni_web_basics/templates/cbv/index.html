@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Class Based Views</h1>
+<p>{{ title }}</p>
+<ul>
+    {% for pet in pets %}
+        <li>
+            <a href="{% url 'pet details' pet.id %}">{{ pet.name }}</a></li>
+    {% endfor %}
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+    {% else %}
+         <a disabled>Prev</a>
+    {% endif %}
+    <span>page: {{ page_obj.number }}</span>
+     {% if page_obj.has_next %}
+         <a href="?page={{ page_obj.next_page_number }}">Next</a>
+     {% endif %}
+</ul>
+</body>
+</html>

@@ -3,6 +3,11 @@
 {% block page-heading %}All Pythons{% endblock %}
 
 {% block content %}
+    <form method="get" action="{% url 'index' %}">
+        {{ filter_form }}
+        {% csrf_token %}
+        <button>Filter</button>
+    </form>
     <div class="d-flex p-3">
         {% for python in pythons %}
         {% include 'partials/python-details.html' with python=python %}

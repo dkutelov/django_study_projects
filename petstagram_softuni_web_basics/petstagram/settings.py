@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     'common',
     'pets',
+    'accounts',
+    'cbv',
 ]
 
 MIDDLEWARE = [
@@ -128,4 +130,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = ''
 STATICFILES_DIRS = (join(BASE_DIR, 'static'),)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = join(BASE_DIR, 'media')
+
+# LOGIN_REDIRECT_URL
+LOGOUT_REDIRECT_URL = '/'
 

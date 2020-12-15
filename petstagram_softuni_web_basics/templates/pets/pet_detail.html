@@ -12,13 +12,24 @@
                     <h5><u>Type:</u> {{ pet.type }}</h5>
                     <h5><u>Name:</u> {{ pet.name }}</h5>
                     <h5><u>Age:</u> {{ pet.age }}</h5>
+                    <h5><u>Author:</u> {{ pet.user.user.username }}</h5>
                 </div>
                 <p class="mt-2">Description: {{ pet.description }}</p>
                 <div class="row">
-                    <a href="{% url 'edit_pet' pet.id %}" class="btn btn-success mr-2">Edit</a>
-                    <a href="{% url 'delete_pet' pet.id %}" class="btn btn-danger">Delete</a>
+                    {% if can_edit %}
+                        <a href="{% url 'edit_pet' pet.id %}" class="btn btn-success mr-2">Edit</a>
+                    {% endif %}
+                    {% if can_delete %}
+                        <a href="{% url 'delete_pet' pet.id %}" class="btn btn-danger">Delete</a>
+                    {% endif %}
                 </div>
-				<a href="{% url 'like_pet' pet.id %}"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                {% if can_like %}
+                    {% if has_liked %}
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                    {% else %}
+				        <a href="{% url 'like_pet' pet.id %}"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                    {% endif %}
+                {% endif %}
                 <p class="mt-2">Likes: {{ pet.likes_count }}</p>
             </div>
         </div>
@@ -36,6 +47,7 @@
                 <h3>There are no comments for this pet. </h3>
             </div>
             {% endif %}
+            {% if can_comment %}
             <div class="box">
                 <form method="post">
                      {%  if form.errors %}
@@ -46,6 +58,7 @@
                     <button class="btn btn-primary mt-2" type="submit">Add comment</button>
                 </form>
             </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
